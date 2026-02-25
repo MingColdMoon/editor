@@ -36,8 +36,8 @@
               <menus-toolbar-base-strike />
               <menus-toolbar-base-subscript />
               <menus-toolbar-base-superscript />
-              <menus-toolbar-base-color />
-              <menus-toolbar-base-background-color />
+              <menus-toolbar-base-color v-if="!disableMenu('color')" />
+              <menus-toolbar-base-background-color v-if="!disableMenu('background-color')" />
               <menus-toolbar-base-highlight v-if="!disableMenu('highlight')" />
             </div>
           </div>
@@ -229,9 +229,9 @@
             </div>
           </div>
           <div class="umo-virtual-group">
-            <menus-toolbar-page-break />
-            <menus-toolbar-page-break-marks />
-            <menus-toolbar-page-line-number />
+            <menus-toolbar-page-break v-if="!disableMenu('break')" />
+            <menus-toolbar-page-break-marks v-if="!disableMenu('break-marks')" />
+            <menus-toolbar-page-line-number v-if="!disableMenu('line-number')" />
             <menus-toolbar-page-watermark v-if="!disableMenu('watermark')" />
             <menus-toolbar-page-background v-if="!disableMenu('background')" />
           </div>
