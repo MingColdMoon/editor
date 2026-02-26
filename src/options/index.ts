@@ -391,6 +391,11 @@ const ojbectSchema = new ObjectSchema({
         },
         required: false,
       },
+      showToggle: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
     },
   },
   page: {
@@ -472,6 +477,21 @@ const ojbectSchema = new ObjectSchema({
         required: false,
       },
       showToc: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showShortcut: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showCurrentLayout: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showFullscreen: {
         merge: 'replace',
         validate: 'boolean',
         required: false,
