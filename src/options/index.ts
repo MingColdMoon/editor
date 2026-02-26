@@ -65,6 +65,9 @@ const defaultOptions: UmoEditorOptions = {
       fontWeight: 'normal',
       text: '',
     },
+    preview: {
+      isShow: false,
+    }
   },
   document: {
     title: '',
@@ -572,6 +575,28 @@ const ojbectSchema = new ObjectSchema({
           },
         },
       },
+      preview: {
+        required: false,
+        merge: 'replace',
+        validate: 'object',
+        schema: {
+          isShow: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          },
+          enabled: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          },
+          laserPointer: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          }
+        },
+      }
     },
   },
   document: {

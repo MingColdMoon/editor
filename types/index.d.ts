@@ -49,6 +49,7 @@ export interface PageOption {
   bodyHeight?: number
   autoWidth?: boolean
   preview?: {
+    isShow?: boolean
     enabled?: boolean
     laserPointer?: boolean
   }
