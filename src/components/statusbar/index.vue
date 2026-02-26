@@ -1,7 +1,7 @@
 <template>
   <div v-if="!page.preview?.enabled" class="umo-status-bar">
     <div class="umo-status-bar-left">
-      <tooltip :content="page.showToc ? t('toc.hide') : t('toc.show')">
+      <tooltip v-if="!disableMenu('toc')" :content="page.showToc ? t('toc.hide') : t('toc.show')">
         <t-button
           class="umo-status-bar-button"
           :class="{ active: page.showToc }"
@@ -564,6 +564,10 @@ watch(
   },
   { immediate: true },
 )
+
+const disableMenu = (name: string) => {
+  return options.value.disableExtensions.includes(name)
+}
 </script>
 
 <style lang="less" scoped>
