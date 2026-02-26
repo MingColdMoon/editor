@@ -37,6 +37,7 @@ const defaultOptions: UmoEditorOptions = {
     showSaveLabel: true,
     defaultMode: 'ribbon',
     menus: ['base', 'insert', 'table', 'tools', 'page', 'export'],
+    showToggle: false,
   },
   page: {
     layouts: ['page', 'web'],
@@ -52,6 +53,9 @@ const defaultOptions: UmoEditorOptions = {
     showLineNumber: false,
     showBookmark: false,
     showToc: false,
+    showShortcut: false,
+    showCurrentLayout: false,
+    showFullscreen: false,
     watermark: {
       type: 'compact',
       alpha: 0.2,

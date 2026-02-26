@@ -52,6 +52,9 @@ export interface PageOption {
     enabled?: boolean
     laserPointer?: boolean
   }
+  showShortcut?: boolean
+  showCurrentLayout?: boolean
+  showFullscreen?: boolean
 }
 
 export type ToolbarMenu =
@@ -66,6 +69,7 @@ export type ToolbarMenu =
 
 export interface ToolbarOptions {
   showSaveLabel?: boolean
+  showToggle?: boolean
   defaultMode?: 'classic' | 'ribbon'
   menus?: ToolbarMenu[]
 }

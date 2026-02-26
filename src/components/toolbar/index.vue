@@ -91,6 +91,7 @@
         </template>
       </t-popup>
       <t-dropdown
+        v-if="options.toolbar.showToggle"
         trigger="click"
         size="small"
         placement="bottom-right"

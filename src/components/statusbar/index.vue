@@ -1,7 +1,7 @@
 <template>
   <div v-if="!page.preview?.enabled" class="umo-status-bar">
     <div class="umo-status-bar-left">
-      <tooltip v-if="!disableMenu('toc')" :content="page.showToc ? t('toc.hide') : t('toc.show')">
+      <tooltip v-if="page.showToc" :content="page.showToc ? t('toc.hide') : t('toc.show')">
         <t-button
           class="umo-status-bar-button"
           :class="{ active: page.showToc }"
@@ -30,7 +30,7 @@
           <icon name="spellcheck" color="red" />
         </t-button>
       </tooltip>
-      <tooltip :content="t('shortcut.title')">
+      <tooltip v-if="page.showShortcut" :content="t('shortcut.title')">
         <t-button
           class="umo-status-bar-button"
           variant="text"
@@ -63,6 +63,7 @@
       </tooltip>
       <div class="umo-status-bar-split"></div>
       <t-dropdown
+        v-if="page.showCurrentLayout"
         :attach="container"
         :popup-props="{
           onVisibleChange(visible: boolean) {
@@ -101,7 +102,7 @@
           </t-dropdown-item>
         </t-dropdown-menu>
       </t-dropdown>
-      <div class="umo-status-bar-split"></div>
+      <div v-if="page.showCurrentLayout" class="umo-status-bar-split"></div>
       <t-popup
         v-if="editor"
         v-model="showWordCount"
@@ -152,6 +153,7 @@
     </div>
     <div class="umo-status-bar-right">
       <tooltip
+        v-if="page.preview?.enabled"
         :content="
           page.preview?.enabled ? t('preview.disable') : t('preview.title')
         "
@@ -167,6 +169,7 @@
         </t-button>
       </tooltip>
       <tooltip
+        v-if="page.showFullscreen"
         :content="`${fullscreen?.isFullscreen ? t('fullscreen.disable') : t('fullscreen.title')} (${getShortcut('Ctrl+F11')})`"
       >
         <t-button
@@ -178,7 +181,7 @@
           <icon :name="fullscreen ? 'full-screen-exit' : 'full-screen'" />
         </t-button>
       </tooltip>
-      <div class="umo-status-bar-split"></div>
+      <div v-if="page.showFullscreen || page.preview?.enabled" class="umo-status-bar-split"></div>
       <div v-if="page.layout === 'page'" class="umo-zoom-level-bar">
         <tooltip :content="`${t('zoom.zoomOut')} (${getShortcut('Ctrl-')})`">
           <t-button
