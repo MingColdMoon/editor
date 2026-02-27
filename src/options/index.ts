@@ -139,6 +139,7 @@ const defaultOptions: UmoEditorOptions = {
       })
     },
   },
+  viewerPage: {},
   user: {},
   users: [],
   extensions: [],
@@ -921,7 +922,7 @@ const ojbectSchema = new ObjectSchema({
     validate: 'object',
     required: false,
   },
-  viewer: {
+  viewerPage: {
     merge: 'replace',
     validate: 'object',
     required: false,

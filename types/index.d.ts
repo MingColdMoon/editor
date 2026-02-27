@@ -112,7 +112,7 @@ export interface DocumentOptions {
   autoSave?: AutoSaveOptions
 }
 
-export interface ViewerOptions {
+export interface ViewerPageOptions {
   lang?: string
   theme?: string
   mode?: string[]
@@ -271,7 +271,7 @@ export interface UmoEditorOptions {
   toolbar?: ToolbarOptions
   page?: PageOption
   document?: DocumentOptions
-  viewer?: ViewerOptions
+  viewerPage?: ViewerPageOptions
   ai?: {
     assistant?: AssistantOptions
   }
