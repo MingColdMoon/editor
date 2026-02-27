@@ -921,6 +921,11 @@ const ojbectSchema = new ObjectSchema({
     validate: 'object',
     required: false,
   },
+  viewer: {
+    merge: 'replace',
+    validate: 'object',
+    required: false,
+  },
   user: {
     merge: 'assign',
     validate: 'object',
