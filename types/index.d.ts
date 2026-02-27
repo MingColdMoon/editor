@@ -56,6 +56,7 @@ export interface PageOption {
   showShortcut?: boolean
   showCurrentLayout?: boolean
   showFullscreen?: boolean
+  showFooterRight?: boolean
 }
 
 export type ToolbarMenu =

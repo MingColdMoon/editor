@@ -56,6 +56,7 @@ const defaultOptions: UmoEditorOptions = {
     showShortcut: false,
     showCurrentLayout: false,
     showFullscreen: false,
+    showFooterRight: false,
     watermark: {
       type: 'compact',
       alpha: 0.2,
@@ -495,6 +496,11 @@ const ojbectSchema = new ObjectSchema({
         required: false,
       },
       showFullscreen: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showFooterRight: {
         merge: 'replace',
         validate: 'boolean',
         required: false,
