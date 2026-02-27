@@ -224,8 +224,8 @@ const viewerOptions = $ref({
   title: options.value.document.title,
   html: '',
   editable: options.value?.viewer?.editable ?? true,
-  closeable: options.value?.viewer?.editable ?? true,
-  showAside: options.value?.viewer?.editable ?? false,
+  closeable: options.value?.viewer?.closeable ?? true,
+  showAside: options.value?.viewer?.showAside ?? false,
   ...options.value?.viewer
 })
 watch(viewer, async (visible: boolean) => {
