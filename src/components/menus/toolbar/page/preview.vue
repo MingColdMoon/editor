@@ -1,6 +1,6 @@
 <template>
   <menus-button
-    v-if="page.preview"
+    v-if="page.preview.isShow"
     ico="preview"
     :text="t('page.preview')"
     huge

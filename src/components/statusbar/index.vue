@@ -1,7 +1,7 @@
 <template>
   <div v-if="!page.preview?.enabled" class="umo-status-bar">
     <div class="umo-status-bar-left">
-      <tooltip v-if="!disableMenu('toc')" :content="page.showToc ? t('toc.hide') : t('toc.show')">
+      <tooltip v-if="page.showToc" :content="page.showToc ? t('toc.hide') : t('toc.show')">
         <t-button
           class="umo-status-bar-button"
           :class="{ active: page.showToc }"
@@ -30,7 +30,7 @@
           <icon name="spellcheck" color="red" />
         </t-button>
       </tooltip>
-      <tooltip :content="t('shortcut.title')">
+      <tooltip v-if="page.showShortcut" :content="t('shortcut.title')">
         <t-button
           class="umo-status-bar-button"
           variant="text"
@@ -63,6 +63,7 @@
       </tooltip>
       <div class="umo-status-bar-split"></div>
       <t-dropdown
+        v-if="page.showCurrentLayout"
         :attach="container"
         :popup-props="{
           onVisibleChange(visible: boolean) {
@@ -101,7 +102,7 @@
           </t-dropdown-item>
         </t-dropdown-menu>
       </t-dropdown>
-      <div class="umo-status-bar-split"></div>
+      <div v-if="page.showCurrentLayout" class="umo-status-bar-split"></div>
       <t-popup
         v-if="editor"
         v-model="showWordCount"
@@ -152,6 +153,7 @@
     </div>
     <div class="umo-status-bar-right">
       <tooltip
+        v-if="page.preview?.enabled"
         :content="
           page.preview?.enabled ? t('preview.disable') : t('preview.title')
         "
@@ -167,6 +169,7 @@
         </t-button>
       </tooltip>
       <tooltip
+        v-if="page.showFullscreen"
         :content="`${fullscreen?.isFullscreen ? t('fullscreen.disable') : t('fullscreen.title')} (${getShortcut('Ctrl+F11')})`"
       >
         <t-button
@@ -178,83 +181,85 @@
           <icon :name="fullscreen ? 'full-screen-exit' : 'full-screen'" />
         </t-button>
       </tooltip>
-      <div class="umo-status-bar-split"></div>
-      <div v-if="page.layout === 'page'" class="umo-zoom-level-bar">
-        <tooltip :content="`${t('zoom.zoomOut')} (${getShortcut('Ctrl-')})`">
-          <t-button
-            class="umo-status-bar-button"
-            variant="text"
-            size="small"
-            :disabled="(page.zoomLevel ?? 21) <= 20"
-            @click="zoomOut"
-          >
-            <icon name="minus" />
-          </t-button>
-        </tooltip>
-        <t-slider
-          v-model="page.zoomLevel"
-          class="umo-zoom-level-slider"
-          :min="20"
-          :max="500"
-          :step="10"
-          :tooltip-props="{
-            showArrow: false,
-            theme: 'light',
-            popperOptions: {
-              modifiers: [{ name: 'offset', options: { offset: [0, 2] } }],
-            },
-          }"
-          :label="t('zoom.level') + '${value}%%'"
-        />
-        <tooltip :content="`${t('zoom.zoomIn')} (${getShortcut('Ctrl+')})`">
-          <t-button
-            class="umo-status-bar-button"
-            variant="text"
-            size="small"
-            :disabled="!!(page.zoomLevel && page.zoomLevel >= 500)"
-            @click="zoomIn"
-          >
-            <icon name="plus" />
-          </t-button>
-        </tooltip>
-        <tooltip :content="`${t('zoom.autoWidth')} (${getShortcut('Ctrl0')})`">
-          <t-button
-            class="umo-status-bar-button"
-            :class="{ active: page.autoWidth }"
-            variant="text"
-            size="small"
-            @click="autoWidth(true)"
-          >
-            <icon name="auto-width" />
-          </t-button>
-        </tooltip>
-        <tooltip :content="`${t('zoom.reset')} (${getShortcut('Ctrl1')})`">
-          <t-button
-            class="umo-status-bar-button auto-width"
-            variant="text"
-            style="width: 80px"
-            size="small"
-            @click="zoomReset"
-          >
-            {{ page.zoomLevel }}%
-          </t-button>
-        </tooltip>
-      </div>
-      <t-dropdown
-        :attach="container"
-        :options="langs"
-        placement="top-left"
-        trigger="click"
-        @click="changeLang"
-      >
-        <t-button
-          class="umo-status-bar-button auto-width umo-lang-button"
-          variant="text"
-          size="small"
+      <div v-if="page.showFullscreen || page.preview?.enabled" class="umo-status-bar-split"></div>
+      <template v-if="page.showFooterRight">
+        <div v-if="page.layout === 'page'" class="umo-zoom-level-bar">
+          <tooltip :content="`${t('zoom.zoomOut')} (${getShortcut('Ctrl-')})`">
+            <t-button
+              class="umo-status-bar-button"
+              variant="text"
+              size="small"
+              :disabled="(page.zoomLevel ?? 21) <= 20"
+              @click="zoomOut"
+            >
+              <icon name="minus" />
+            </t-button>
+          </tooltip>
+          <t-slider
+            v-model="page.zoomLevel"
+            class="umo-zoom-level-slider"
+            :min="20"
+            :max="500"
+            :step="10"
+            :tooltip-props="{
+              showArrow: false,
+              theme: 'light',
+              popperOptions: {
+                modifiers: [{ name: 'offset', options: { offset: [0, 2] } }],
+              },
+            }"
+            :label="t('zoom.level') + '${value}%%'"
+          />
+          <tooltip :content="`${t('zoom.zoomIn')} (${getShortcut('Ctrl+')})`">
+            <t-button
+              class="umo-status-bar-button"
+              variant="text"
+              size="small"
+              :disabled="!!(page.zoomLevel && page.zoomLevel >= 500)"
+              @click="zoomIn"
+            >
+              <icon name="plus" />
+            </t-button>
+          </tooltip>
+          <tooltip :content="`${t('zoom.autoWidth')} (${getShortcut('Ctrl0')})`">
+            <t-button
+              class="umo-status-bar-button"
+              :class="{ active: page.autoWidth }"
+              variant="text"
+              size="small"
+              @click="autoWidth(true)"
+            >
+              <icon name="auto-width" />
+            </t-button>
+          </tooltip>
+          <tooltip :content="`${t('zoom.reset')} (${getShortcut('Ctrl1')})`">
+            <t-button
+              class="umo-status-bar-button auto-width"
+              variant="text"
+              style="width: 80px"
+              size="small"
+              @click="zoomReset"
+            >
+              {{ page.zoomLevel }}%
+            </t-button>
+          </tooltip>
+        </div>
+        <t-dropdown
+          :attach="container"
+          :options="langs"
+          placement="top-left"
+          trigger="click"
+          @click="changeLang"
         >
-          {{ lang }}
-        </t-button>
-      </t-dropdown>
+          <t-button
+            class="umo-status-bar-button auto-width umo-lang-button"
+            variant="text"
+            size="small"
+          >
+            {{ lang }}
+          </t-button>
+        </t-dropdown>
+      </template>
     </div>
   </div>
   <div v-else class="umo-preview-bar">

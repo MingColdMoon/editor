@@ -37,18 +37,18 @@
           v-bind="watermarkOptions"
           :watermark-content="pageOptions.watermark"
         >
-          <div class="umo-page-node-header" contenteditable="false">
-            <div
-              class="umo-page-corner corner-tl"
-              style="width: var(--umo-page-margin-left)"
-            ></div>
+<!--          <div class="umo-page-node-header" contenteditable="false">-->
+<!--            <div-->
+<!--              class="umo-page-corner corner-tl"-->
+<!--              style="width: var(&#45;&#45;umo-page-margin-left)"-->
+<!--            ></div>-->
 
-            <div class="umo-page-node-header-content"></div>
-            <div
-              class="umo-page-corner corner-tr"
-              style="width: var(--umo-page-margin-right)"
-            ></div>
-          </div>
+<!--            <div class="umo-page-node-header-content"></div>-->
+<!--            <div-->
+<!--              class="umo-page-corner corner-tr"-->
+<!--              style="width: var(&#45;&#45;umo-page-margin-right)"-->
+<!--            ></div>-->
+<!--          </div>-->
           <div class="umo-page-node-content">
             <editor>
               <template #bubble_menu="props">
@@ -56,17 +56,17 @@
               </template>
             </editor>
           </div>
-          <div class="umo-page-node-footer" contenteditable="false">
-            <div
-              class="umo-page-corner corner-bl"
-              style="width: var(--umo-page-margin-left)"
-            ></div>
-            <div class="umo-page-node-footer-content"></div>
-            <div
-              class="umo-page-corner corner-br"
-              style="width: var(--umo-page-margin-right)"
-            ></div>
-          </div>
+<!--          <div class="umo-page-node-footer" contenteditable="false">-->
+<!--            <div-->
+<!--              class="umo-page-corner corner-bl"-->
+<!--              style="width: var(&#45;&#45;umo-page-margin-left)"-->
+<!--            ></div>-->
+<!--            <div class="umo-page-node-footer-content"></div>-->
+<!--            <div-->
+<!--              class="umo-page-corner corner-br"-->
+<!--              style="width: var(&#45;&#45;umo-page-margin-right)"-->
+<!--            ></div>-->
+<!--          </div>-->
         </t-watermark>
       </div>
     </div>

@@ -37,6 +37,7 @@ const defaultOptions: UmoEditorOptions = {
     showSaveLabel: true,
     defaultMode: 'ribbon',
     menus: ['base', 'insert', 'table', 'tools', 'page', 'export'],
+    showToggle: false,
   },
   page: {
     layouts: ['page', 'web'],
@@ -52,6 +53,10 @@ const defaultOptions: UmoEditorOptions = {
     showLineNumber: false,
     showBookmark: false,
     showToc: false,
+    showShortcut: false,
+    showCurrentLayout: false,
+    showFullscreen: false,
+    showFooterRight: false,
     watermark: {
       type: 'compact',
       alpha: 0.2,
@@ -61,6 +66,9 @@ const defaultOptions: UmoEditorOptions = {
       fontWeight: 'normal',
       text: '',
     },
+    preview: {
+      isShow: false,
+    }
   },
   document: {
     title: '',
@@ -387,6 +395,11 @@ const ojbectSchema = new ObjectSchema({
         },
         required: false,
       },
+      showToggle: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
     },
   },
   page: {
@@ -472,6 +485,26 @@ const ojbectSchema = new ObjectSchema({
         validate: 'boolean',
         required: false,
       },
+      showShortcut: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showCurrentLayout: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showFullscreen: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
+      showFooterRight: {
+        merge: 'replace',
+        validate: 'boolean',
+        required: false,
+      },
       watermark: {
         required: false,
         merge: 'replace',
@@ -548,6 +581,28 @@ const ojbectSchema = new ObjectSchema({
           },
         },
       },
+      preview: {
+        required: false,
+        merge: 'replace',
+        validate: 'object',
+        schema: {
+          isShow: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          },
+          enabled: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          },
+          laserPointer: {
+            merge: 'replace',
+            validate: 'boolean',
+            required: false,
+          }
+        },
+      }
     },
   },
   document: {
