@@ -223,9 +223,10 @@ const viewerOptions = $ref({
   mode: ['html'],
   title: options.value.document.title,
   html: '',
-  editable: true,
-  closeable: true,
-  showAside: false,
+  editable: options.value?.viewer?.editable ?? true,
+  closeable: options.value?.viewer?.editable ?? true,
+  showAside: options.value?.viewer?.editable ?? false,
+  ...options.value?.viewer
 })
 watch(viewer, async (visible: boolean) => {
   viewerOptions.html = visible ? await getVanillaHTML() : ''

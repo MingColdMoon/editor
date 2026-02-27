@@ -112,6 +112,22 @@ export interface DocumentOptions {
   autoSave?: AutoSaveOptions
 }
 
+export interface ViewerOptions {
+  lang?: string
+  theme?: string
+  mode?: string[]
+  meta?: any[]
+  showHeader?: boolean
+  showAside?: boolean
+  editable?: boolean
+  printable?: boolean
+  downloadable?: boolean
+  closeable?: boolean
+  showMultiPage?: boolean
+  fitWidth?: boolean
+  needPassword?: boolean
+}
+
 export type LocaleLabel = string | { en_US: string; zh_CN: string }
 
 export interface PageSize {
@@ -255,6 +271,7 @@ export interface UmoEditorOptions {
   toolbar?: ToolbarOptions
   page?: PageOption
   document?: DocumentOptions
+  viewer?: ViewerOptions
   ai?: {
     assistant?: AssistantOptions
   }
