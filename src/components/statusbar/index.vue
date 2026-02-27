@@ -182,7 +182,7 @@
         </t-button>
       </tooltip>
       <div v-if="page.showFullscreen || page.preview?.enabled" class="umo-status-bar-split"></div>
-      <div v-show="page.showFooterRight">
+      <template v-if="page.showFooterRight">
         <div v-if="page.layout === 'page'" class="umo-zoom-level-bar">
           <tooltip :content="`${t('zoom.zoomOut')} (${getShortcut('Ctrl-')})`">
             <t-button
@@ -259,7 +259,7 @@
             {{ lang }}
           </t-button>
         </t-dropdown>
-      </div>
+      </template>
     </div>
   </div>
   <div v-else class="umo-preview-bar">

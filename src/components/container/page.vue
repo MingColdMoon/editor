@@ -228,10 +228,8 @@ const viewerOptions = $ref({
   showAside: false,
 })
 watch(viewer, async (visible: boolean) => {
-  console.log('--------------->viewer', visible);
   viewerOptions.html = visible ? await getVanillaHTML() : ''
   viewerVisible = visible
-  console.log('--------------->viewer--------------->end', visible);
 })
 </script>
 
