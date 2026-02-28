@@ -107,6 +107,7 @@ const defaultOptions: UmoEditorOptions = {
   webPages: defaultWebPages,
   templates: [],
   cdnUrl: 'https://unpkg.com/@umoteam/editor-external@latest',
+  bootCdnUrl: 'https://cdn.bootcdn.net/ajax/libs',
   shareUrl: location.href || '',
   diagrams: {
     domain: 'https://embed.diagrams.net',
@@ -868,6 +869,11 @@ const ojbectSchema = new ObjectSchema({
     required: false,
   },
   cdnUrl: {
+    merge: 'replace',
+    validate: 'string',
+    required: false,
+  },
+  bootCdnUrl: {
     merge: 'replace',
     validate: 'string',
     required: false,

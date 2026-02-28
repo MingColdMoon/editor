@@ -279,6 +279,7 @@ export interface UmoEditorOptions {
   webPages?: WebPageItem[]
   templates?: Template[]
   cdnUrl?: string
+  bootCdnUrl?: string
   shareUrl?: string
   diagrams?: Record<string, unknown>
   importWord?: ImportWordOptions
