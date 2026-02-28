@@ -60,15 +60,15 @@ const importWord = () => {
       })
       return
     }
-    const message = await useMessage('loading', {
-      attach: container,
-      content: t('base.importWord.converting'),
-    })
+    // const message = await useMessage('loading', {
+    //   attach: container,
+    //   content: t('base.importWord.converting'),
+    // })
 
     // 使用用户自定义导入方法
     if ($options?.useCustomMethod) {
       const result = await $options.onCustomImportMethod?.(file)
-      message.close()
+      // message.close()
       try {
         if (result?.messages?.type === 'error') {
           useMessage('error', {
@@ -151,7 +151,8 @@ const importWord = () => {
       }
       const content = doc.body.innerHTML.toString()
       editor.value?.commands.setContent(content)
-      message.close()
+      console.log('word导入已经渲染完成')
+      // message.close()
     } catch {
       useMessage('error', {
         attach: container,
